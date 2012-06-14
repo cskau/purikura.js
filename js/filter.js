@@ -139,8 +139,8 @@ function purikuraFilter(ctx, comp) {
   var CONTRAST = 1.2;
   var BRIGHTNESS = 0.08;
   var SATURATION = 0.08;
-  var imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-  var i = (imageData.width * imageData.height);
+  var imageData = ctx.getImageData(
+      0, 0, ctx.canvas.width, ctx.canvas.height);
   console.log('Running Median Filter..');
   imageData = medianFilter(imageData, 3, 3);
   console.log('Running Normalization Filter..');
@@ -151,7 +151,7 @@ function purikuraFilter(ctx, comp) {
   return imageData;
   console.log('Running Custom Filter..');
   var data = imageData.data;
-  while (--i) {
+  for (var i = (imageData.width * imageData.height); i; --i) {
     var r = data[(4 * i) + 0];
     var g = data[(4 * i) + 1];
     var b = data[(4 * i) + 2];
