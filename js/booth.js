@@ -169,10 +169,12 @@ Booth.prototype.onMouseDownPaintCanvas = function(e) {
   var ctx = e.target.getContext('2d');
   var imageData = ctx.getImageData(
       0, 0, e.target.width, e.target.height);
+  e.target.paintFrom = [e.offsetX, e.offsetY];
 //  ctx.putImageData(imageData, 0, 0);
 };
 
 Booth.prototype.onMouseUpPaintCanvas = function(e) {
+  var ctx = e.target.getContext('2d');
   e.target.isPainting = false;
 };
 
@@ -183,11 +185,13 @@ Booth.prototype.onMouseMovePaintCanvas = function(e) {
 //        0, 0, e.target.width, e.target.height);
     ctx.strokeStyle = e.target.isPainting;
     ctx.lineWidth = e.target.lineWidth;
+    ctx.lineJoin = "round";
     ctx.beginPath();
-    ctx.moveTo(e.offsetX, e.offsetY);
-    ctx.lineTo(e.offsetX + e.webkitMovementX, e.offsetY + e.webkitMovementY);
+    ctx.moveTo(e.target.paintFrom[0], e.target.paintFrom[1]);
+    ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
     ctx.closePath();
+    e.target.paintFrom = [e.offsetX, e.offsetY];
 //    ctx.putImageData(imageData, 0, 0);
   }
 };

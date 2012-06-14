@@ -142,9 +142,10 @@ function purikuraFilter(ctx, comp) {
   var imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   var i = (imageData.width * imageData.height);
   console.log('Running Median Filter..');
-  imageData = medianFilter(imageData);
+  imageData = medianFilter(imageData, 3, 3);
   console.log('Running Normalization Filter..');
   imageData = normalizationFilter(imageData, 0.2, 0.5);
+  ctx.putImageData(imageData, 0, 0);
   console.log('Running Pop-Eye Filter..');
   imageData = popeyeFilter(ctx, comp);
   return imageData;
@@ -197,9 +198,9 @@ function purikuraFilter(ctx, comp) {
   return imageData;
 }
 
-function medianFilter(imageData) {
-  var windowWidth = 3;
-  var windowHeight = 3;
+function medianFilter(imageData, windowWidth, windowHeight) {
+  var windowWidth = (windowWidth || 3);
+  var windowHeight = (windowHeight || 3);
   var midmid = Math.floor((windowWidth * windowHeight) / 2);
   var outputData = document.createElement('canvas');
   outputData.width = imageData.width;
@@ -301,8 +302,7 @@ function popeyeFilter(ctx, comp) {
       0, 0, imageData.width, imageData.height).data;
   var x_scale = 1;
   var y_scale = 1;
-  // TODO(cskau): back to zero. Seems to aim a bit left atm
-  var x_offset = 10;
+  var x_offset = 0;
   var y_offset = 0;
   var eye_width = 0;
   var eye_height = 0;

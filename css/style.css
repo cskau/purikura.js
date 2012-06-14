@@ -23,3 +23,9 @@ a:link, a:visited {
   opacity: 0;
 }
 
+#disclaimer {
+  font-size: 10pt;
+  color: red;
+  background: #ffff33;
+}
+
