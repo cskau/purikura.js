@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>プリクラ!</title>
+    <script type="text/javascript" src="js/ccv.js"></script>
+    <script type="text/javascript" src="js/face.js"></script>
+    <script type="text/javascript" src="js/booth.js"></script>
+    <script type="text/javascript" src="js/filter.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <script type="text/javascript">
+      var booth = new Booth();
+      setTimeout(booth.initialize.bind(booth), 1);
+    </script>
+    <div id="content">
+      <h1>
+        プリクラ！
+      </h1>
+      <video id="localVideo" autoplay="autoplay" style="opacity:1;" src=""></video>
+      <div id="help">
+        <h3>Help! Help?</h3>
+        If the webcam stream isn't showing you probably need to enable
+        the experimental MediaStream API.<br />
+        You can do this by doing
+        <a href="https://sites.google.com/site/webrtc/running-the-demos">
+          like this
+        </a>.
+        <br />
+        Also remember to <tt>Allow</tt> the page to access
+        <tt>'your camera and microphone'</tt> when prompted.
+      </div>
+      <div id="credit">
+        <a href="http://liuliu.me/eyes/javascript-face-detection-explained">
+          JS Face Detect by Liu Liu
+        </a>
+        <br />
+        <a href="http://www.freesound.org/people/FreqMan/sounds/42899/">
+          Shutter sound by Richard Frohlich
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
+
